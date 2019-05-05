@@ -6,7 +6,6 @@ def jogar():
     palavra_secreta = carrega_palavra_secreta()
 
     letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
-    print(letras_acertadas)
 
     enforcou = False
     acertou  = False
@@ -20,11 +19,12 @@ def jogar():
             marca_chute_correto(chute, letras_acertadas, palavra_secreta)
         else:
             erros += 1
-            desenha_forca(erros)
+
+        desenha_forca(erros)
 
         enforcou = erros == 7
         acertou = "_" not in letras_acertadas
-        print(letras_acertadas)
+        print(exibir_palavra(letras_acertadas))
 
     if (acertou):
         imprime_mensagem_vencedor()
@@ -97,7 +97,6 @@ def imprime_mensagem_perdedor(palavra_secreta):
 def desenha_forca(erros):
     print("  _______     ")
     print(" |/      |    ")
-
     if(erros == 1):
         print(" |      (_)   ")
         print(" |            ")
@@ -143,6 +142,12 @@ def desenha_forca(erros):
     print(" |            ")
     print("_|___         ")
     print()
+
+def exibir_palavra(palavra):
+    conteudo = ""
+    for letra in palavra:
+        conteudo = conteudo + ' ' + letra
+    return conteudo
 
 if(__name__ == "__main__"):
     jogar()

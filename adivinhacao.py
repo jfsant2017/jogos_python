@@ -2,16 +2,10 @@ import random
 
 def jogar():
 
-    print("*********************************")
-    print("Bem vindo ao jogo de Adivinhação!")
-    print("*********************************")
-
+    exibir_menu()
     numero_secreto = random.randrange(1,101)
     total_de_tentativas = 0
     pontos = 1000
-
-    print("Qual nível de dificuldade?")
-    print("(1) Fácil (2) Médio (3) Difícil")
 
     nivel = int(input("Defina o nível: "))
 
@@ -49,6 +43,13 @@ def jogar():
             pontos = pontos - pontos_perdidos
 
     print("Fim do jogo")
+
+def exibir_menu():
+    print("*********************************")
+    print("Bem vindo ao jogo de Adivinhação!")
+    print("*********************************")
+    print("Qual nível de dificuldade?")
+    print("(1) Fácil (2) Médio (3) Difícil")
 
 if(__name__ == "__main__"):
     jogar()
