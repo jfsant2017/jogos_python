@@ -2,6 +2,7 @@ import forca
 import adivinhacao
 
 def escolhe_jogo():
+    exibe_menu()
     jogo = int(input("Qual jogo? "))
 
     if(jogo == 1):
@@ -16,7 +17,8 @@ def exibe_menu():
     print("*******Escolha o seu jogo!*******")
     print("*********************************")
 
-    print("(1) Forca (2) Adivinhação")
+    print("(1) Forca")
+    print("(2) Adivinhação")
 
 if(__name__ == "__main__"):
     escolhe_jogo()
