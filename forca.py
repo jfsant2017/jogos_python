@@ -1,11 +1,12 @@
 import random
+import csv
 
 def jogar():
 
     mensagem_boas_vindas()
     palavra_secreta = carrega_palavra_secreta()
 
-    letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
+    letras_acertadas = inicializa_letras_acertadas(palavra_secreta[0])
 
     enforcou = False
     acertou  = False
@@ -15,8 +16,13 @@ def jogar():
 
         chute = pede_chute()
 
-        if (chute in palavra_secreta):
-            marca_chute_correto(chute, letras_acertadas, palavra_secreta)
+        if (chute.upper() == 'DICA'):
+            print("A dica é: {}".format(palavra_secreta[1]))
+        elif (chute.upper() == 'SAIR'):
+            print("Saindo....")
+            erros = 7
+        elif (chute in palavra_secreta[0]):
+            marca_chute_correto(chute, letras_acertadas, palavra_secreta[0])
         else:
             erros += 1
 
@@ -29,22 +35,30 @@ def jogar():
     if (acertou):
         imprime_mensagem_vencedor()
     else:
-        imprime_mensagem_perdedor(palavra_secreta)
+        imprime_mensagem_perdedor(palavra_secreta[0])
 
 def mensagem_boas_vindas():
-    print("*********************************")
-    print("***Bem vindo ao jogo da Forca!***")
-    print("*********************************")
+    print("************************************")
+    print("*   Bem vindo ao jogo da Forca!    *")
+    print("************************************")
+    print("* Opções:                          *")
+    print("*  1. Informe uma letra para chute *")
+    print("*  2. Digite DICA para obter ajuda *")
+    print("*  3. Digite SAIR para finalizar   *")
+    print("************************************")
 
 def carrega_palavra_secreta(primeira_linha_valida = 0, nome_arquivo="palavras.txt"):
     palavras = []
-    with open(nome_arquivo) as arquivo:
-        for linha in arquivo:
-            palavras.append(linha.strip())
+    dicas = []
+    with open(nome_arquivo, 'r') as arquivo:
+        reader = csv.reader(arquivo, delimiter='\t')
+        for palavra, dica in reader:
+            palavras.append(palavra.strip())
+            dicas.append(dica.strip())
 
     posicao = random.randrange(primeira_linha_valida, len(palavras))
 
-    return palavras[posicao].upper()
+    return [palavras[posicao].upper(), dicas[posicao]]
 
 def inicializa_letras_acertadas(palavra):
     return ["_" for letra in palavra]

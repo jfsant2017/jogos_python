@@ -1,12 +1,7 @@
-banana
-bororosca
-cebola
-limpeza
-chuveiro
-cáustico
-maçã
-urubu
-alabarda
-ignorante
-clausura
-vinho
+banana	fruta
+cebola	vegetal
+chuveiro	objeto de limpeza pessoal
+urubu	animal
+ignorante	que nao sabe
+clausura	estar fechado
+vinho	bebida
