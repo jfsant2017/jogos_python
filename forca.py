@@ -12,38 +12,41 @@ class Forca(Jogo):
     def jogar(self):
 
         self.mensagem_boas_vindas()
-        palavra_secreta = self.carrega_palavra_secreta()
+        while True:
+            palavra_secreta = self.carrega_palavra_secreta()
+            letras_acertadas = self.inicializa_letras_acertadas(palavra_secreta[0])
 
-        letras_acertadas = self.inicializa_letras_acertadas(palavra_secreta[0])
+            enforcou = False
+            acertou  = False
+            erros = 0
 
-        enforcou = False
-        acertou  = False
-        erros = 0
+            while (not acertou and not enforcou):
 
-        while (not acertou and not enforcou):
+                chute = self.pede_chute()
 
-            chute = self.pede_chute()
+                if (chute.upper() == 'DICA'):
+                    print("A dica é: {}".format(palavra_secreta[1]))
+                elif (chute.upper() == 'SAIR'):
+                    print("Saindo....")
+                    break
+                elif (chute in palavra_secreta[0]):
+                    self.marca_chute_correto(chute, letras_acertadas, palavra_secreta[0])
+                else:
+                    erros += 1
 
-            if (chute.upper() == 'DICA'):
-                print("A dica é: {}".format(palavra_secreta[1]))
-            elif (chute.upper() == 'SAIR'):
-                print("Saindo....")
-                erros = 7
-            elif (chute in palavra_secreta[0]):
-                self.marca_chute_correto(chute, letras_acertadas, palavra_secreta[0])
+                self.desenha_forca(erros)
+
+                enforcou = erros == 7
+                acertou = "_" not in letras_acertadas
+                print(self.exibir_palavra(letras_acertadas))
+
+            if (acertou):
+                self.imprime_mensagem_vencedor()
             else:
-                erros += 1
+                self.imprime_mensagem_perdedor(palavra_secreta[0])
 
-            self.desenha_forca(erros)
-
-            enforcou = erros == 7
-            acertou = "_" not in letras_acertadas
-            print(self.exibir_palavra(letras_acertadas))
-
-        if (acertou):
-            self.imprime_mensagem_vencedor()
-        else:
-            self.imprime_mensagem_perdedor(palavra_secreta[0])
+            if (not self.continuar()):
+                break
 
     def mensagem_boas_vindas(self):
         print("************************************")

@@ -1,6 +1,6 @@
 from forca import Forca
 from adivinhacao import Adivinhacao
-# import velha
+from velha import Velha
 from playlist import Playlist
 
 def escolhe_jogo():
@@ -10,8 +10,9 @@ def escolhe_jogo():
 
     forca = Forca(jogador)
     advinhacao = Adivinhacao(jogador)
+    velha = Velha(jogador)
 
-    jogos_disponiveis = [ forca, advinhacao ]
+    jogos_disponiveis = [ forca, advinhacao, velha ]
     minha_playlist = Playlist(jogador, jogos_disponiveis)
 
     exibe_menu(jogador, minha_playlist)
