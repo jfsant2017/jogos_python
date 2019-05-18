@@ -170,4 +170,3 @@ class Forca(Jogo):
         for letra in palavra:
             conteudo = conteudo + ' ' + letra
         return conteudo
-
