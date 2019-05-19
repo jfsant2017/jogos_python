@@ -141,7 +141,7 @@ class Velha(Jogo):
                         print("       \_______/           ")
                         break
                     else:
-                        turn = 'Player 2'
+                        turn = 'Jogador 2'
 
                 if turn == 'Jogador 2':
                     self.display_board(board)
