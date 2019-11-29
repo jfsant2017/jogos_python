@@ -5,3 +5,8 @@ urubu	animal
 ignorante	que nao sabe
 clausura	estar fechado
 vinho	bebida
+preguiça    animal
+cueca   peça íntima
+batata  tubérculo
+elefante    nome popular do paquiderme
+sapo    animal dos sonhos das meninas
